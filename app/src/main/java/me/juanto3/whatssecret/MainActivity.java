@@ -1,10 +1,16 @@
 package me.juanto3.whatssecret;
 
+import android.arch.lifecycle.ViewModelProviders;
+import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -15,13 +21,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String> listItems = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
-    ListView list;
-    DatabaseHandler db;
+    private ContactListViewModel viewModel;
+    private RecyclerViewAdapter recyclerViewAdapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,42 +36,31 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-         db = new DatabaseHandler(this);
+        recyclerView = (RecyclerView) findViewById(R.id.list);
+        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<Contact>());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
-        list = (ListView) findViewById(R.id.list);
-        list.setAdapter(adapter);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+        viewModel = ViewModelProviders.of(this).get(ContactListViewModel.class);
+
+        viewModel.getContactList().observe(MainActivity.this, new android.arch.lifecycle.Observer<List<Contact>>() {
+            @Override
+            public void onChanged(@Nullable List<Contact> contact) {
+                recyclerViewAdapter.addItems(contact);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Contact newContact = new Contact("Hans", "hash", (int) (System.currentTimeMillis() / 1000L));
-                db.addContact(newContact);
-                if (populateList()) {
-                    Toast.makeText(MainActivity.this, "Succesfully added list item.", Toast.LENGTH_SHORT).show();
-                    //Snackbar.make(view, "Succesfully added list item.", Snackbar.LENGTH_LONG)
-                    //        .setAction("Action", null).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Couldn't add list item.", Toast.LENGTH_SHORT).show();
-                    //Snackbar.make(view, "Couldn't add list item.", Snackbar.LENGTH_LONG)
-                    //        .setAction("Action", null).show();
-                }
+                startActivity(new Intent(MainActivity.this, AddContact.class));
             }
         });
     }
 
     public boolean populateList() {
-        List<Contact> contacts = db.getAllContacts();
-        adapter.clear();
-        for(Contact cn : contacts) {
-            adapter.add(cn.getName());
-        }
-        return true;
-    }
-
-    public boolean addListItem() {
-        adapter.add("Heyo, list item #" + Math.random() + " here");
         return true;
     }
 

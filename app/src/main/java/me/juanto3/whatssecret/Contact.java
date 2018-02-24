@@ -1,58 +1,59 @@
 package me.juanto3.whatssecret;
 
+import android.arch.persistence.room.*;
+
 /**
  * Created by jonat on 24/02/2018.
  */
-
+@Entity
 public class Contact {
-    int _id;
-    String _name;
-    String _hash;
-    int _last;
 
-    public Contact() {
-
-    }
+    @PrimaryKey(autoGenerate = true)
+    public int id;
+    private String name;
+    private String hash;
+    private int last;
 
     public Contact(int id, String name, String hash, int last) {
-        this._id = id;
-        this._name = name;
-        this._hash = hash;
-        this._last = last;
+        this.id = id;
+        this.name = name;
+        this.hash = hash;
+        this.last = last;
     }
 
+    @Ignore
     public Contact(String name, String hash, int last) {
-        this._name = name;
-        this._hash = hash;
-        this._last = last;
+        this.name = name;
+        this.hash = hash;
+        this.last = last;
     }
 
     public int getID(){
-        return this._id;
+        return this.id;
     }
 
     public void setID(int id) {
-        this._id = id;
+        this.id = id;
     }
 
     public String getName() {
-        return this._name;
+        return this.name;
     }
 
     public void setName(String name) {
-        this._name = name;
+        this.name = name;
     }
 
     public String getHash() {
-        return this._hash;
+        return this.hash;
     }
 
     public void setHash(String hash) {
-        this._hash = hash;
+        this.hash = hash;
     }
 
-    public int getLast() { return this._last;}
+    public int getLast() { return this.last;}
 
-    public void setLast(int last) {this._last = last;}
+    public void setLast(int last) {this.last = last;}
 
 }
