@@ -23,6 +23,7 @@
             android:name=".AddContact"
             android:label="@string/title_activity_add_contact"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

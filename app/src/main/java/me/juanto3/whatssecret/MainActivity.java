@@ -19,11 +19,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity {
+
+    private AdView adView;
 
     private ContactListViewModel viewModel;
     private RecyclerViewAdapter recyclerViewAdapter;
@@ -35,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        adView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<Contact>());

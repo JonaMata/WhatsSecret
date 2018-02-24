@@ -2,4 +2,8 @@
     <string name="app_name">WhatsSecret</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_contact">Add Contact</string>
+    <!--
+    <string name="banner_ad_unit_id">ca-app-pub-5069300583206986/8592321375</string>
+    Using test ads instead of reals -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>
