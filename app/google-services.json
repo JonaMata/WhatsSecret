@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "698089020620",
+    "firebase_url": "https://whatssecret-bccd4.firebaseio.com",
+    "project_id": "whatssecret-bccd4",
+    "storage_bucket": "whatssecret-bccd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698089020620:android:727c8fee5d042fc5",
+        "android_client_info": {
+          "package_name": "me.juanto3.whatssecret"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698089020620-30kkbeu3ddn8cbng2jd171rd83vq3j38.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.juanto3.whatssecret",
+            "certificate_hash": "d15112840ecb2324c6d3e8bbc5986d5f700d6055"
+          }
+        },
+        {
+          "client_id": "698089020620-klkfenkgo2d3vgu1eo3i32mep4ehdlp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSBOGCcHMhLDHnIyD1Jm13PG0r3wnIY8c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698089020620-klkfenkgo2d3vgu1eo3i32mep4ehdlp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
