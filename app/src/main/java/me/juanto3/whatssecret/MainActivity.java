@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ import java.util.Observer;
 public class MainActivity extends AppCompatActivity {
 
     private AdView adView;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private ContactListViewModel viewModel;
     private RecyclerViewAdapter recyclerViewAdapter;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<Contact>());
